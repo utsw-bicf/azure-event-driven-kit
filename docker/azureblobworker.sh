@@ -37,4 +37,4 @@ NUMCORES=`expr $(nproc) \/ 2`
 
 trap "finish $3 $6" EXIT
 
-<command>
+nextflow template.nf --project_dir=`pwd -P` --executor=local
