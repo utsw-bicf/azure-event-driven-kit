@@ -37,4 +37,4 @@ NUMCORES=`expr $(nproc) \/ 2`
 
 trap "finish $3 $6" EXIT
 
-nextflow run tutorial.nf
+nextflow run main.nf -c nextflow.config --designFile design.tsv
