@@ -31,7 +31,7 @@ def add_tasks(batch_service_client, pool_id, task_id, docker_image, storage_acco
     # This is the docker image we want to run
     task_container_settings = batchmodels.TaskContainerSettings(
         image_name=docker_image,
-        container_run_options='--rm -v /scratch:/scratch --privileged'
+        container_run_options='--rm -v /scratch:/scratch --privileged -v /etc/localtime:/etc/localtime'
     )
     
     # The container needs this argument to be executed
