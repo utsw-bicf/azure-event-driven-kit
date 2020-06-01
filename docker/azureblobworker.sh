@@ -37,4 +37,7 @@ NUMCORES=`expr $(nproc) \/ 2`
 
 trap "finish $3 $6" EXIT
 
+mkdir /singularity-images
+az storage blob download-batch --source singularity-images --destination /singularity-images/
+
 nextflow run main.nf -c nextflow.config --designFile design.tsv
