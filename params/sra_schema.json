@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "sra_schema.json",
+    "title": "bicf/sra_pipeline pipeline parameters",
+    "description": "This pipeline is a simple method for downloading bulk SRA data, and renaming it, and having it ready to use in our other Astrocyte pipelines BICF at UT Southwestern Dept. of Bioinformatics.",
+    "type": "object",
+    "properties": {
+      "input": {
+          "type": "string",
+          "default": "${baseDir}",
+          "description": "Path to files"
+      },
+      "designFile": {
+          "type": "string",
+          "default": "${input}/test.design.tsv",
+          "description": "Tab-separated file containing information about the samples to download",
+          "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline."
+      },
+      "output": {
+          "type": "string",
+          "description": "The output directory where the results will be saved.",
+          "default": "${input}/output/Samples"
+      },
+  },
+  "required": [
+      "input",
+      "designFile"
+  ]
+}
