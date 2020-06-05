@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "gudmmap_rnaseq_schema.json",
+    "title": "gudmap_rbk/rna-seq pipeline parameters",
+    "description": "This pipeline was created to be a standard mRNA-sequencing analysis pipeline which integrates with the GUDMAP and RBK consortium data-hub. ",
+    "type": "object",
+    "properties": {
+      "deriva": {
+          "type": "string",
+          "description": "Path to deriva credential.json"
+      },
+      "bdbag": {
+          "type": "string",
+          "description": "Path to bdbag cookies.txt"
+      },
+      "repRID": {
+          "type": "string",
+          "description": "repRID used in analysis"
+      },
+      "output": {
+          "type": "string",
+          "description": "The output directory where the results will be saved.",
+          "default": "${baseDir}/output/"
+      },
+  },
+  "required": [
+      "deriva",
+      "bdbag",
+      "repRID"
+  ]
+}
