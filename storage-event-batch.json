@@ -138,7 +138,7 @@
             ]
         },
         {
-            "name": "[concat(parameters('batchAccountName'),'-vnet')]",
+            "name": "[concat('VNET-',parameters('batchAccountName'),'-sc')]",
             "type": "Microsoft.Network/VirtualNetworks",
             "apiVersion": "2019-09-01",
             "location": "[parameters('location')]",
@@ -354,7 +354,7 @@
                     }
                 },
                 "networkConfiguration": {
-                    "subnetId": "[concat(resourceId('Microsoft.Network/virtualNetworks',concat(parameters('batchAccountName'),'-vnet')), '/subnets/default')]"
+                    "subnetId": "[concat(resourceId('Microsoft.Network/virtualNetworks',concat('VNET-',parameters('batchAccountName'),'-sc')), '/subnets/default')]"
                 },
                 "startTask": {
                     "commandLine": "/bin/bash -c 'echo -e \"n\\np\\n1\\n\\n\\nw\" | sudo fdisk /dev/sdc && mkfs.ext4 /dev/sdc1 && mkdir -p /scratch && mount -t ext4 /dev/sdc1 /scratch && chmod -R 777 /scratch'",
@@ -371,7 +371,7 @@
                 "[resourceId('Microsoft.Batch/batchAccounts', parameters('batchAccountName'))]",
                 "[resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_nsg_name'))]",
-                "[resourceId('Microsoft.Network/VirtualNetworks',concat(parameters('batchAccountName'),'-vnet'))]"
+                "[resourceId('Microsoft.Network/VirtualNetworks',concat('VNET-',parameters('batchAccountName'),'-sc'))]"
             ]
         },
         {
