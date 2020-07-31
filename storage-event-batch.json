@@ -4,13 +4,13 @@
     "parameters": {
         "batchAccountName": {
             "type": "string",
-            "defaultValue": "[concat('batchac',parameters('location'))]",
+            "defaultValue": "bicfbatchac",
             "minLength": 3,
             "maxLength": 120
         },
         "acrName": {
             "type": "string",
-            "defaultValue": "azureacrname",
+            "defaultValue": "bicfacr",
             "minLength": 5,
             "maxLength": 50,
             "metadata": {
@@ -40,13 +40,13 @@
         },
         "storageName": {
             "type": "string",
-            "defaultValue": "eventhpcsa",
+            "defaultValue": "bicfsa",
             "minLength": 3,
             "maxLength": 24
         },
         "containerPrefix": {
             "type": "string",
-            "defaultValue": "event"
+            "defaultValue": "bicfevent"
         },
         "appName": {
             "type": "string",
@@ -157,6 +157,8 @@
                         "name": "default",
                         "properties": {
                             "addressPrefix": "10.2.0.0/24",
+                            "privateLinkServiceNetworkPolicies": "Disabled",
+                            "privateEndpointNetworkPolicies": "Disabled",
                             "networkSecurityGroup": {
                                 "id": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('networkSecurityGroups_nsg_name'))]"
                             }
@@ -312,7 +314,7 @@
         {
             "type": "Microsoft.Batch/batchAccounts/pools",
             "name": "[concat(parameters('batchAccountName'),'/',parameters('batchAccountName'),'pool')]",
-            "apiVersion": "2019-08-01",
+            "apiVersion": "2020-05-01",
             "properties": {
                 "vmSize": "[parameters('BatchPoolVMSize')]",
                 "deploymentConfiguration": {
